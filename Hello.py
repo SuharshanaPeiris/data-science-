@@ -40,7 +40,7 @@ if __name__ == "__main__":
     
 # Sample data
 df = pd.read_csv("Processed_GlobalSuperstore.csv")
-plt.style.use('bmh')
+
 # Create the bar chart using Matplotlib
 x = df['Category']
 y = df['Quantity']
