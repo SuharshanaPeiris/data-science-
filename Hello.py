@@ -41,18 +41,38 @@ if __name__ == "__main__":
 # Sample data
 df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
+
+
+# Assuming you have a DataFrame called 'df' with 'Category' and 'Quantity' columns
+# Load your dataset
+# df = pd.read_csv("your_dataset.csv")
+
+# Example dataset
+data = {
+    'Category': ['A', 'B', 'C', 'D'],
+    'Quantity': [100, 150, 120, 200]
+}
+
+# Create a DataFrame
+df = pd.DataFrame(data)
+
 # Create the bar chart using Matplotlib
 x = df['Category']
 y = df['Quantity']
 
+# Create a new figure and axis
+fig, ax = plt.subplots()
+
+# Plot the bar chart
+ax.bar(x, y, color='skyblue')
+
 # Add labels and title
-plt_xlabel('Category')
-plt_ylabel('Quantity')
-plt.bar(x,y)
+ax.set_xlabel('Category')
+ax.set_ylabel('Quantity')
 ax.set_title('Quantity by Category')
 
-# Display the chart using Streamlit's pyplot function
-plt.show()
+# Display the chart
+st.pyplot(fig)
 
 
 
