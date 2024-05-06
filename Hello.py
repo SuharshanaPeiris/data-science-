@@ -71,7 +71,7 @@ if uploaded_file is not None:
 #line chart
 
 # Load the dataset
-uploaded_file = st.file_uploader("Processed_GlobalSuperstore.csv", type=["csv"])
+uploaded_file = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 # If file is uploaded
 if uploaded_file is not None:
