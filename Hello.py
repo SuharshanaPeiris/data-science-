@@ -68,28 +68,30 @@ if uploaded_file is not None:
     # Show the chart
     st.pyplot(fig)
 # Load the dataset
-# Upload CSV file
 uploaded_file = st.file_uploader("Processed_GlobalSuperstore.csv", type=["csv"])
-
-# If file is uploaded
 if uploaded_file is not None:
-    # Read data from CSV file
     df = pd.read_csv(uploaded_file)
 
-    # Group data by 'Country' and calculate total shipping cost
-    country_shipping_cost = df.groupby('Country')['Shipping Cost'].sum().reset_index()
+    # Check the first few rows of the dataframe
+    st.write(df.head())
 
-    # Plot bar chart
+    # Group the data by 'Country' and calculate total sales
+    country_sales = df.groupby('Country')['Sales'].sum().reset_index()
+
+    # Plot the line chart
     fig, ax = plt.subplots()
-    ax.bar(country_shipping_cost['Country'], country_shipping_cost['Shipping Cost'])
+    ax.plot(country_sales['Country'], country_sales['Sales'], marker='o', color='b', linestyle='-')
 
     # Add labels and title
     ax.set_xlabel('Country')
-    ax.set_ylabel('Total Shipping Cost')
-    ax.set_title('Total Shipping Cost by Country')
+    ax.set_ylabel('Total Sales')
+    ax.set_title('Total Sales by Country')
 
     # Rotate x-axis labels for better readability
     plt.xticks(rotation=45, ha='right')
 
-    # Show plot
+    # Show the chart
     st.pyplot(fig)
+
+
+
