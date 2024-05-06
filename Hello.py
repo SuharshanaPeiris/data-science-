@@ -42,18 +42,18 @@ if __name__ == "__main__":
 df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 
- Sample data
-Region = ['North', 'South', 'East', 'West']
-Quantity = [100, 150, 120, 200]
+ # Data
+categories = ['Category A', 'Category B', 'Category C', 'Category D']
+values = [20, 35, 30, 25]
 
-# Create the bar chart using Matplotlib
-fig, ax = plt.subplots()
-ax.bar(Region, Quantity, color='skyblue')
+# Creating the bar chart
+plt.figure(figsize=(8, 6))
+plt.bar(categories, values, color='skyblue')
 
-# Add labels and title
-ax.set_xlabel('Region')
-ax.set_ylabel('Quantity')
-ax.set_title('Quantity by Region')
+# Adding titles and labels
+plt.title('Bar Chart Example')
+plt.xlabel('Categories')
+plt.ylabel('Values')
 
-# Display the chart using Streamlit's pyplot function
-st.pyplot(fig)
+# Displaying the chart
+plt.show()
