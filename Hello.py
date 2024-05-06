@@ -46,28 +46,7 @@ import matplotlib.pyplot as plt
 
 
 
-   uploaded_file = st.file_uploader("Processed_GlobalSuperstore.csv", type=["csv"])
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
 
-    # Check the first few rows of the dataframe
-    st.write(df.head())
-
-    # Count the occurrences of each order priority
-    order_priority_counts = df['Order Priority'].value_counts()
-
-    # Plot the pie chart
-    fig, ax = plt.subplots()
-    ax.pie(order_priority_counts, labels=order_priority_counts.index, autopct='%1.1f%%')
-
-    # Add a title
-    ax.set_title('Order Priority Distribution')
-
-    # Equal aspect ratio ensures that pie is drawn as a circle
-    ax.axis('equal')
-
-    # Show the chart
-    st.pyplot(fig)
 
 
 
