@@ -44,7 +44,7 @@ df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 # Example data
 sizes = [25, 35, 20, 20]
-labels = ['Region']
+labels = ['Category 1', 'Category 2', 'Category 3', 'Category 4']
 
 # Create a pie chart
 fig, ax = plt.subplots()
@@ -58,4 +58,3 @@ ax.set_title('Simple Pie Chart')
 
 # Display the chart using Streamlit's pyplot function
 st.pyplot(fig)
-
