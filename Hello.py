@@ -44,18 +44,4 @@ df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 
 
-import matplotlib.pyplot as plt
 
-
-
-# Create the bar chart using Matplotlib
-fig, ax = plt.subplots()
-ax.bar(Region, Quantity, color='skyblue')
-
-# Add labels and title
-ax.set_xlabel('Region')
-ax.set_ylabel('Quantity')
-ax.set_title('Quantity by Region')
-
-# Display the chart using Streamlit's pyplot function
-st.pyplot(fig)
