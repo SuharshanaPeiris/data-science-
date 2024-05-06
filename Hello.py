@@ -60,8 +60,6 @@ df = pd.DataFrame(data)
 x = df['Category']
 y = df['Quantity']
 
-# Create a new figure and axis
-fig, ax = plt.subplots()
 
 # Plot the bar chart
 ax.bar(x, y, color='skyblue')
