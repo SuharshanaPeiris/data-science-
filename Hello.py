@@ -40,3 +40,19 @@ if __name__ == "__main__":
     
 # Sample data
 df = pd.read_csv("Processed_GlobalSuperstore.csv")
+
+import matplotlib.pyplot as plt
+
+
+# Creating the bar chart
+plt.figure(figsize=(8, 6))
+plt.bar(Region, Quantity, color='skyblue')
+
+# Adding titles and labels
+plt.title('Bar Chart ')
+plt.xlabel('Region')
+plt.ylabel(' Quantity')
+
+# Displaying the chart
+plt.show()
+
