@@ -1,3 +1,4 @@
+plotly
 altair
 numpy
 pandas
