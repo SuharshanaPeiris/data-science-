@@ -42,36 +42,21 @@ if __name__ == "__main__":
 df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 
+# Example data
+sizes = [25, 35, 20, 20]
+labels = ['Region']
 
-# Assuming you have a DataFrame called 'df' with 'Category' and 'Quantity' columns
-# Load your dataset
-# df = pd.read_csv("your_dataset.csv")
+# Create a pie chart
+plt.figure(figsize=(6, 6))
+plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
 
-# Example dataset
-data = {
-    'Category': ['A', 'B', 'C', 'D'],
-    'Quantity': [100, 150, 120, 200]
-}
+# Equal aspect ratio ensures that pie is drawn as a circle
+plt.axis('equal')
 
-# Create a DataFrame
-df = pd.DataFrame(data)
+# Add a title
+plt.title('Simple Pie Chart')
 
-# Create the bar chart using Matplotlib
-x = df['Category']
-y = df['Quantity']
-
-
-# Plot the bar chart
-ax.bar(x, y, color='skyblue')
-
-# Add labels and title
-ax.set_xlabel('Category')
-ax.set_ylabel('Quantity')
-ax.set_title('Quantity by Category')
-
-# Display the chart
-st.pyplot(fig)
-
-
+# Show the chart
+plt.show()
 
 
