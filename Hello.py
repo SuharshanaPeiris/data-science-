@@ -42,18 +42,9 @@ if __name__ == "__main__":
 df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 
- # Data
-categories = ['Category A', 'Category B', 'Category C', 'Category D']
-values = [20, 35, 30, 25]
-
-# Creating the bar chart
-plt.figure(figsize=(8, 6))
-plt.bar(categories, values, color='skyblue')
-
-# Adding titles and labels
-plt.title('Bar Chart Example')
-plt.xlabel('Categories')
-plt.ylabel('Values')
-
-# Displaying the chart
-plt.show()
+# Create for Region
+region = st.sidebar.multiselect("Region", df["Region"].unique())
+if not region:
+    df2 = df.copy()
+else:
+    df2 = df[df["Region"].isin(region)]
