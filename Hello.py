@@ -44,18 +44,28 @@ df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 import matplotlib.pyplot as plt
 
-# Example data
-sizes = [25, 35, 20, 20]
-labels = ['A', 'B', 'C', 'D']
+# Load the dataset
+uploaded_file = st.file_uploader("Processed_GlobalSuperstore.csv", type=["csv"])
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
 
-# Create a pie chart
-fig, ax = plt.subplots()
-ax.pie(sizes, labels=labels, autopct='%1.1f%%')
+    # Check the first few rows of the dataframe
+    st.write(df.head())
 
-# Equal aspect ratio ensures that pie is drawn as a circle
-ax.axis('equal')
+    # Count the occurrences of each order priority
+    order_priority_counts = df['Order Priority'].value_counts()
 
-# Show the chart using Streamlit's pyplot function
-st.pyplot(fig)
+    # Plot the pie chart
+    fig, ax = plt.subplots()
+    ax.pie(order_priority_counts, labels=order_priority_counts.index, autopct='%1.1f%%')
+
+    # Add a title
+    ax.set_title('Order Priority Distribution')
+
+    # Equal aspect ratio ensures that pie is drawn as a circle
+    ax.axis('equal')
+
+    # Show the chart
+    st.pyplot(fig)
 
 
