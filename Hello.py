@@ -11,6 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import streamlit as st
+import plotly.express as px
+import pandas as pd
+import os
 
 import streamlit as st
 from streamlit.logger import get_logger
@@ -24,7 +28,7 @@ def run():
         page_icon="👋",
     )
 
-    st.write("# Welcome to SKalpi 👋")
+    st.write("# Welcome to Global Superstore  👋")
 
     st.sidebar.success("Select a demo above.")
 
@@ -50,9 +54,5 @@ def run():
 if __name__ == "__main__":
     run()
     
-import streamlit as st
-import plotly.express as px
-import pandas as pd
-import os
 
 
