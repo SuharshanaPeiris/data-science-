@@ -46,9 +46,7 @@ df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 import matplotlib.pyplot as plt
 
-# Sample data
-Region = ['North', 'South', 'East', 'West']
-Quantity = [100, 150, 120, 200]
+
 
 # Create the bar chart using Matplotlib
 fig, ax = plt.subplots()
