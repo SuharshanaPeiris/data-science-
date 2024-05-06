@@ -44,22 +44,21 @@ df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 import matplotlib.pyplot as plt
 
+
+
 # Example data
 sizes = [25, 35, 20, 20]
-labels = ['Category 1', 'Category 2', 'Category 3', ]
+labels = ['A', 'B', 'C', 'D']
 
 # Create a pie chart
-plt.figure(figsize=(6, 6))
-plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+plt.pie(sizes, labels=labels, autopct='%1.1f%%')
 
 # Equal aspect ratio ensures that pie is drawn as a circle
 plt.axis('equal')
 
-# Add a title
-plt.title('Simple Pie Chart')
-
 # Show the chart
 plt.show()
+
 
 
 
