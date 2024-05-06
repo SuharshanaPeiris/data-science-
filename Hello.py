@@ -69,21 +69,5 @@ if uploaded_file is not None:
     st.pyplot(fig)
 
 
-column_names=['rowid','orderid','orderdate','shipdate','mode','customerid','cname','segment','city','state','country','market','region','proctid','category','subcategory','producname','sales','quantity','discount','prifit','shippingcost','orderpriorty']
-raw_datset=pd.read_csv('Processed_GlobalSuperstore.csv',names=column_names,na_values='?',comment='\t',sep=",",index_col=False,skiprows=1)
-dataset = raw_datset.copy()
-dataset.head()
 
-
-
-average_shipping_cost = dataset.groupby('market')['shippingcost'].mean()
-
-# Bar plot
-average_shipping_cost.plot(kind='bar')
-
-# Add labels and title
-plt.xlabel('Market')
-plt.ylabel('Average Shipping Cost')
-plt.title('Average Shipping Cost by Market')
-plt.show()
 
