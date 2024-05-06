@@ -41,7 +41,7 @@ if __name__ == "__main__":
 # Sample data
 df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
-import matplotlib.pyplot as plt
+
 
 
 # Creating the bar chart
