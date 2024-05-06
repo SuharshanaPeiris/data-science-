@@ -47,16 +47,15 @@ sizes = [25, 35, 20, 20]
 labels = ['Region']
 
 # Create a pie chart
-plt.figure(figsize=(6, 6))
-plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+fig, ax = plt.subplots()
+ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
 
 # Equal aspect ratio ensures that pie is drawn as a circle
-plt.axis('equal')
+ax.axis('equal')
 
 # Add a title
-plt.title('Simple Pie Chart')
+ax.set_title('Simple Pie Chart')
 
-# Show the chart
-plt.show()
-
+# Display the chart using Streamlit's pyplot function
+st.pyplot(fig)
 
