@@ -42,14 +42,14 @@ if __name__ == "__main__":
 df = pd.read_csv("Processed_GlobalSuperstore.csv")
 plt.style.use('bmh')
 # Create the bar chart using Matplotlib
-x = df['Region']
+x = df['Category']
 y = df['Quantity']
 
 # Add labels and title
-plt_xlabel('Region')
+plt_xlabel('Category')
 plt_ylabel('Quantity')
 plt.bar(x,y)
-ax.set_title('Quantity by Region')
+ax.set_title('Quantity by Category')
 
 # Display the chart using Streamlit's pyplot function
 plt.show()
