@@ -44,8 +44,6 @@ df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 import matplotlib.pyplot as plt
 
-
-
 # Example data
 sizes = [25, 35, 20, 20]
 labels = ['A', 'B', 'C', 'D']
@@ -58,7 +56,5 @@ plt.axis('equal')
 
 # Show the chart
 plt.show()
-
-
 
 
