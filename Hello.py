@@ -69,35 +69,45 @@ if uploaded_file is not None:
     st.pyplot(fig)
 
 #line chart
+def app():
+    """Streamlit app to display a line chart of total sales by country."""
 
-# Load the dataset
-uploaded_file = pd.read_csv("Processed_GlobalSuperstore.csv")
+    uploaded_file = st.file_uploader("Upload 'Processed_GlobalSuperstore.csv'", type=["csv"])
 
-# If file is uploaded
-if uploaded_file is not None:
-    # Read data from CSV file
-    df = pd.read_csv(uploaded_file)
+    if uploaded_file is not None:
+        try:
+            # Read data from CSV file
+            df = pd.read_csv(uploaded_file)
 
-    # Check the first few rows of the dataframe
-    st.write(df.head())
+            # Check for data availability
+            if df.empty:
+                st.warning("The uploaded CSV file appears to be empty. Please ensure it contains data.")
+            else:
+                # Group the data by 'Country' and calculate total sales
+                country_sales = df.groupby('Country')['Sales'].sum().reset_index()
 
-    # Group the data by 'Country' and calculate total sales
-    country_sales = df.groupby('Country')['Sales'].sum().reset_index()
+                # Create line chart
+                fig, ax = plt.subplots()
+                ax.plot(country_sales['Country'], country_sales['Sales'], marker='o', color='b', linestyle='-')
 
-    # Plot line chart
-    fig, ax = plt.subplots()
-    ax.plot(country_sales['Country'], country_sales['Sales'], marker='o', color='b', linestyle='-')
+                # Add labels and title
+                ax.set_xlabel('Country')
+                ax.set_ylabel('Total Sales')
+                ax.set_title('Total Sales by Country')
 
-    # Add labels and title
-    ax.set_xlabel('Country')
-    ax.set_ylabel('Total Sales')
-    ax.set_title('Total Sales by Country')
+                # Rotate x-axis labels for better readability
+                plt.xticks(rotation=45, ha='right')
 
-    # Rotate x-axis labels for better readability
-    plt.xticks(rotation=45, ha='right')
+                # Display plot using Streamlit
+                st.pyplot(fig)
 
-    # Show plot
-    st.pyplot(fig)
+        except pd.errors.ParserError as e:
+            st.error(f"Error parsing the uploaded CSV file: {e}")
+        except Exception as e:
+            st.error(f"An unexpected error occurred: {e}")
+
+if __name__ == "__main__":
+    app()
 
 
 
