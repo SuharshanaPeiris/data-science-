@@ -42,19 +42,18 @@ if __name__ == "__main__":
 df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 
-# Example data
-sizes = [25, 35, 20, 20]
-labels = ['Category 1', 'Category 2', 'Category 3', 'Category 4']
+ Sample data
+Region = ['North', 'South', 'East', 'West']
+Quantity = [100, 150, 120, 200]
 
-# Create a pie chart
+# Create the bar chart using Matplotlib
 fig, ax = plt.subplots()
-ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
+ax.bar(Region, Quantity, color='skyblue')
 
-# Equal aspect ratio ensures that pie is drawn as a circle
-ax.axis('equal')
-
-# Add a title
-ax.set_title('Simple Pie Chart')
+# Add labels and title
+ax.set_xlabel('Region')
+ax.set_ylabel('Quantity')
+ax.set_title('Quantity by Region')
 
 # Display the chart using Streamlit's pyplot function
 st.pyplot(fig)
