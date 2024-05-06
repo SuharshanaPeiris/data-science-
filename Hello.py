@@ -68,6 +68,36 @@ if uploaded_file is not None:
     # Show the chart
     st.pyplot(fig)
 
+#line chart
+
+# Load the dataset
+uploaded_file = st.file_uploader("Processed_GlobalSuperstore.csv", type=["csv"])
+
+# If file is uploaded
+if uploaded_file is not None:
+    # Read data from CSV file
+    df = pd.read_csv(uploaded_file)
+
+    # Check the first few rows of the dataframe
+    st.write(df.head())
+
+    # Group the data by 'Country' and calculate total sales
+    country_sales = df.groupby('Country')['Sales'].sum().reset_index()
+
+    # Plot line chart
+    fig, ax = plt.subplots()
+    ax.plot(country_sales['Country'], country_sales['Sales'], marker='o', color='b', linestyle='-')
+
+    # Add labels and title
+    ax.set_xlabel('Country')
+    ax.set_ylabel('Total Sales')
+    ax.set_title('Total Sales by Country')
+
+    # Rotate x-axis labels for better readability
+    plt.xticks(rotation=45, ha='right')
+
+    # Show plot
+    st.pyplot(fig)
 
 
 
