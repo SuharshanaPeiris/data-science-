@@ -43,7 +43,7 @@ df = pd.read_csv("Processed_GlobalSuperstore.csv")
 
 
 
-
+import matplotlib.pyplot as plt
 # Creating the bar chart
 plt.figure(figsize=(8, 6))
 plt.bar(Region, Quantity, color='skyblue')
