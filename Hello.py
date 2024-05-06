@@ -54,5 +54,12 @@ def run():
 if __name__ == "__main__":
     run()
     
-
+fl = st.file_uploader(":file_folder: Upload a file",type=(["csv","txt","xlsx","xls"]))
+if fl is not None:
+    filename = fl.Processed_GlobalSuperstore
+    st.write(Processed_GlobalSuperstore)
+    df = pd.read_csv(Processed_GlobalSuperstore, encoding = "ISO-8859-1")
+else:
+    os.chdir(r"C:\Users\AEPAC\Desktop\Streamlit")
+    df = pd.read_csv("Processed_GlobalSuperstore.csv", encoding = "ISO-8859-1")
 
