@@ -46,7 +46,7 @@ import matplotlib.pyplot as plt
 
 # Example data
 sizes = [25, 35, 20, 20]
-labels = ['Category 1', 'Category 2', 'Category 3', 'Category 4']
+labels = ['Category 1', 'Category 2', 'Category 3', ]
 
 # Create a pie chart
 plt.figure(figsize=(6, 6))
