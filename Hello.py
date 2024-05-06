@@ -74,3 +74,16 @@ raw_datset=pd.read_csv('Processed_GlobalSuperstore.csv',names=column_names,na_va
 dataset = raw_datset.copy()
 dataset.head()
 
+
+
+average_shipping_cost = dataset.groupby('market')['shippingcost'].mean()
+
+# Bar plot
+average_shipping_cost.plot(kind='bar')
+
+# Add labels and title
+plt.xlabel('Market')
+plt.ylabel('Average Shipping Cost')
+plt.title('Average Shipping Cost by Market')
+plt.show()
+
