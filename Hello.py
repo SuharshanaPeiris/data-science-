@@ -1,73 +1,85 @@
-# Copyright (c) Streamlit Inc. (2018-2022) Snowflake Inc. (2022)
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 import streamlit as st
-import plotly.express as px
 import pandas as pd
-import os
+import plotly.express as px
 
-import streamlit as st
-from streamlit.logger import get_logger
+# Setting page configuration
+st.set_page_config(
+    page_title="Global Superstore Data Sales Dashboard",
+    page_icon=":chart_with_upwards_trend:",
+    layout="wide",  # Adjust layout as needed
+)
 
-LOGGER = get_logger(__name__)
+# Load data
+def load_data(file_path: str) -> pd.DataFrame | None:
+    """Load data from CSV file"""
+    try:
+        return pd.read_csv(file_path)
+    except Exception as e:
+        st.error(f"Failed to load data: {e}")
+        return None
+
+# Sample data (replace with your CSV path)
+df = load_data("Processed_GlobalSuperstore.csv")
+
+if df is None:
+    st.stop()
+
+# Create sidebar for interactive filters
+def create_filters(df: pd.DataFrame) -> pd.DataFrame:
+    """Create filters for data"""
+    with st.sidebar:
+        # Filter by category
+        category_filter = st.multiselect(
+            "Filter by Category",
+            options=df["Category"].unique(),
+            default=df["Category"].unique(),
+        )
+        df_filtered = df[df["Category"].isin(category_filter)]
+
+        # Filter by sales channel (if applicable)
+            sales_channel_filter = st.multiselect(
+                "Filter by Sales Channel",
+                options=["Sales Channel"].unique(),
+                default=["Sales Channel"].unique(),
+            )
+            df_filtered = df_filtered[df_filtered["Sales Channel"].isin(sales_channel_filter)]
+
+        return df_filtered
+
+df_filtered = create_filters(df)
+
+# Key performance indicators (KPIs)
+def calculate_kpis(df: pd.DataFrame) -> tuple:
+    """Calculate KPIs"""
+    kpi1 = st.metric(label="Total Sales", value=df["Sales"].sum().astype(float))
+    kpi2 = st.metric(label="Average Profit Margin", value=df["Profit"].mean().astype(float))
+    return kpi1, kpi2
+
+kpi1, kpi2 = calculate_kpis(df_filtered)
+
+# Visualizations
+def create_visualizations(df: pd.DataFrame) -> None:
+    """Create visualizations"""
+    # Visualization 1: Sales by Region
+    sales_by_region = px.bar(df, x="Region", y="Sales", color="Region", title="Sales by Region")
+
+    # Add some space between visualizations
+    st.markdown("---")
+
+   # Visualization 2: Sales by Category (Pie Chart)
+    sales_by_category_pie = px.pie(df_filtered, values="Sales", names="Category", title="Sales by Category")
+
+    # Add some space between visualizations
+    st.markdown("---")
+
+    # Visualization 3: Sales by Sub-Category
+    sales_by_subcategory = px.bar(df, x="Sub-Category", y="Sales", color="Sub-Category", title="Sales by Sub-Category")
+
+    # Add some space between visualizations
+    st.markdown("---")
+
+    # Visualization 4: Profit by Country
+    profit_by_country = px.bar(df, x="Country", y="Profit", color="Country", title="Profit by Country")
 
 
-def run():
-    st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
-    )
-
-    st.write("# Welcome to Global Superstore  👋")
-
-    st.sidebar.success("Select a demo above.")
-
- 
-
-
-if __name__ == "__main__":
-    run()
-    
-# Sample data
-df = pd.read_csv("Processed_GlobalSuperstore.csv")
-
-
-import matplotlib.pyplot as plt
-
-#pie chart
-uploaded_file = st.file_uploader("Processed_GlobalSuperstore.csv", type=["csv"])
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-
-    # Check the first few rows of the dataframe
-    st.write(df.head())
-
-    # Count the occurrences of each order priority
-    order_priority_counts = df['Order Priority'].value_counts()
-
-    # Plot the pie chart
-    fig, ax = plt.subplots()
-    ax.pie(order_priority_counts, labels=order_priority_counts.index, autopct='%1.1f%%')
-
-    # Add a title
-    ax.set_title('Order Priority Distribution')
-
-    # Equal aspect ratio ensures that pie is drawn as a circle
-    ax.axis('equal')
-
-    # Show the chart
-    st.pyplot(fig)
-
-
-
-
+create_visualizations(df)
