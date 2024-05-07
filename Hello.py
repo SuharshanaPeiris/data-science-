@@ -69,55 +69,5 @@ if uploaded_file is not None:
     st.pyplot(fig)
 
 
-import pandas as pd
-import streamlit as st
-import plotly.graph_objects as go
-from streamlit.logger import get_logger
-
-df = pd.read_csv('Processed_GlobalSuperstore.csv')
-
-LOGGER = get_logger(__name__)
-st.set_page_config(
-    page_title="Coursework | Dashboard",
-    page_icon="./logo.svg"
-)
-
-def run():
-    # Title and description
-    st.header("Coursework")
-    st.write("This interactive dashboard explores sales data from a global retail superstore.")
-
-    # Processed data table
-    st.subheader("Processed Dataset")
-    st.dataframe(df.style.set_properties(all_rows={'font-size': '11pt'}))
-
-    # Graph 1: Sales per Category and Sub-Category
-
-    # Group data, sort by category and sub-category
-    df_grouped = df.groupby(['Category', 'Sub-Category'])['Sales'].sum().unstack()
-
-    # Interative stacked bar chart
-    fig = go.Figure()
-    data = [
-        go.Bar(
-            name=category,
-            x=df_grouped.index,
-            y=df_grouped.iloc[:, i],
-        )
-        for i, category in enumerate(df_grouped.columns)
-    ]
-    fig.add_traces(data)
-
-    fig.update_layout(
-        title='Sales per Category and Sub Category',
-        xaxis_title='Category',
-        yaxis_title='Sales ($)',
-        barmode='stack',
-        legend_title_text='Sub Category'  # Adjust legend title
-    )
-
-    fig.update_traces(marker_line_color='black', marker_line_width=0.5)  # Add bar border+
-
-    st.plotly_chart(fig)
 
 
